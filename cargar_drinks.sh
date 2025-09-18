@@ -1,0 +1,22 @@
+#!/bin/bash
+# Script para descargar dataset de alcohol-consumption y copiarlo a HDFS 
+
+# Descargar archivo
+wget -P /home/hadoop/landing \
+"https://raw.githubusercontent.com/fivethirtyeight/data/master/alcohol-consumption/drinks.csv"
+
+if [ $? -ne 0 ]; then
+  echo "❌ Error al descargar el archivo con wget."
+  exit 1
+fi
+
+# Subir archivo a HDFS
+hdfs dfs -mkdir -p /ingest
+hdfs dfs -put -f /home/hadoop/landing/drinks.csv /ingest
+
+if [ $? -eq 0 ]; then
+  echo "✅ Archivo copiado exitosamente a HDFS: /ingest/drinks.csv"
+else
+  echo "❌ Error al copiar el archivo a HDFS."
+  exit 1
+fi
