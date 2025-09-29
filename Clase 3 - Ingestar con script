@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script para descargar dataset de alcohol-consumption y copiarlo a HDFS 
+# Script para descargar dataset de alcohol-consumption y copiarlo a HDFS: cargar_drinks.sh
 
 # Descargar archivo
 wget -P /home/hadoop/landing \
